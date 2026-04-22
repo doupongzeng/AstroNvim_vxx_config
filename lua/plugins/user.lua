@@ -69,22 +69,16 @@ return {
   -- You can disable default plugins as follows:
   { "max397574/better-escape.nvim", enabled = false },
 
-  {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    opts = function(_, opts)
-      opts.model = "claude-3.7-sonnet"
-      return opts
-    end,
-  },
-
   -- You can also easily customize additional setup of plugins that is outside of the plugin's setup call
   {
     "L3MON4D3/LuaSnip",
     config = function(plugin, opts)
-      require "astronvim.plugins.configs.luasnip"(plugin, opts) -- include the default astronvim config that calls the setup call
       -- add more custom luasnip configuration such as filetype extend or custom snippets
       local luasnip = require "luasnip"
       luasnip.filetype_extend("javascript", { "javascriptreact" })
+
+      -- include the default astronvim config that calls the setup call
+      require "astronvim.plugins.configs.luasnip"(plugin, opts)
     end,
   },
 
@@ -117,57 +111,4 @@ return {
       )
     end,
   },
-  -- {
-  --   "hrsh8th/nvim-cmp",
-  --   keys = { ":", "/", "?" },
-  --   dependencies = {
-  --     "hrsh8th/cmp-cmdline",
-  --   },
-  --   config = function(_, opts)
-  --     local cmp = require "cmp"
-  --     cmp.setup(opts)
-  --
-  --     local mapkey = {
-  --       ["<C-j>"] = {
-  --         c = function(fallback)
-  --           if cmp.visible() then
-  --             cmp.select_next_item()
-  --           else
-  --             fallback()
-  --           end
-  --         end,
-  --       },
-  --       ["<C-k>"] = {
-  --         c = function(fallback)
-  --           if cmp.visible() then
-  --             cmp.select_prev_item()
-  --           else
-  --             fallback()
-  --           end
-  --         end,
-  --       },
-  --     }
-  --
-  --     cmp.setup.cmdline("/", {
-  --       mapping = cmp.mapping.preset.cmdline(mapkey),
-  --       sources = {
-  --         { name = "buffer" },
-  --       },
-  --     })
-  --
-  --     cmp.setup.cmdline(":", {
-  --       mapping = cmp.mapping.preset.cmdline(mapkey),
-  --       sources = cmp.config.sources({
-  --         { name = "path" },
-  --       }, {
-  --         {
-  --           name = "cmdline",
-  --           options = {
-  --             ignore_cmds = { "Man", "!" },
-  --           },
-  --         },
-  --       }),
-  --     })
-  --   end,
-  -- },
 }

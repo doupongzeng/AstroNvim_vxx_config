@@ -66,6 +66,17 @@ return {
     },
   },
 
+  -- Override copilot-lua-cmp keymaps: C-J only for completion menu, not copilot
+  {
+    "saghen/blink.cmp",
+    opts = {
+      keymap = {
+        ["<C-J>"] = { "select_next", "fallback" },
+        ["<C-K>"] = { "select_prev", "fallback" },
+      },
+    },
+  },
+
   -- You can disable default plugins as follows:
   { "max397574/better-escape.nvim", enabled = false },
 

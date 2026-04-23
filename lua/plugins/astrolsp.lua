@@ -48,6 +48,14 @@ return {
       -- ["*"] = { capabilities = {} }, -- modify default LSP client settings such as capabilities
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
       -- clangd = {filetypes = {"c", "cpp", "cc", "cuda"}},
+      clangd = {
+        cmd = {
+          "clangd",
+          "--header-insertion=iwyu",
+          "--completion-style=detailed",
+          "--clang-tidy",
+        },
+      },
     },
     -- customize how language servers are attached
     handlers = {
